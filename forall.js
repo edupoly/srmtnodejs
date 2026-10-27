@@ -4,6 +4,7 @@ var express = require("express"); //nodejs importing library
 var app = express();
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.get("/hi", (req, res) => {
   console.log("Hi called");
@@ -43,7 +44,7 @@ app.post("/add", (req, res) => {
   console.log(req.params);
   console.log(req.query);
   console.log(req.body);
-  console.log(req.query);
+
   if (req.body.arth == "add") {
     res.send(+req.body.a + +req.body.b);
   }
