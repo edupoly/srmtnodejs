@@ -8,9 +8,30 @@ app.get("/hi", (req, res) => {
   res.send("Hello How are you");
 });
 
-app.get("/suresh", (req, res) => {
+app.get("/praveen", (req, res) => {
   console.log("im called");
-  res.send("suresh called");
+  res.send("new Praveen called");
+});
+
+app.get("/add", (req, res) => {
+  console.log(req.query);
+  res.send(+req.query.a + +req.query.b);
+});
+app.get("/sub", (req, res) => {
+  console.log(req.query);
+  res.send(req.query.a - req.query.b);
+});
+app.get("/mul", (req, res) => {
+  console.log(req.query);
+  res.send(req.query.a * req.query.b);
+});
+app.get("/div", (req, res) => {
+  console.log(req.query);
+  res.send(req.query.a / req.query.b);
+});
+
+app.get("/myform", (req, res) => {
+  res.sendFile(__dirname + "/arth.html");
 });
 
 app.listen(4000, () => {
