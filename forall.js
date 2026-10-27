@@ -3,6 +3,8 @@
 var express = require("express"); //nodejs importing library
 var app = express();
 
+app.use(express.urlencoded({ extended: false }));
+
 app.get("/hi", (req, res) => {
   console.log("Hi called");
   res.send("Hello How are you");
@@ -28,10 +30,20 @@ app.get("/add", (req, res) => {
   if (req.query.arth == "div") {
     res.send(req.query.a / req.query.b);
   }
+  if (req.query.arth == "rem") {
+    res.send(req.query.a % req.query.b);
+  }
 });
 
 app.get("/myform", (req, res) => {
   res.sendFile(__dirname + "/arth.html");
+});
+
+app.post("/add", (req, res) => {
+  console.log(req.params);
+  console.log(req.query);
+  console.log(req.body);
+  res.send("Please wait");
 });
 
 app.listen(4000, () => {
