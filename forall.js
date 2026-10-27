@@ -43,7 +43,23 @@ app.post("/add", (req, res) => {
   console.log(req.params);
   console.log(req.query);
   console.log(req.body);
-  res.send("Please wait");
+  console.log(req.query);
+  if (req.body.arth == "add") {
+    res.send(+req.body.a + +req.body.b);
+  }
+
+  if (req.body.arth == "sub") {
+    res.send(req.body.a - req.body.b);
+  }
+  if (req.query.arth == "mul") {
+    res.send(req.query.a * req.query.b);
+  }
+  if (req.query.arth == "div") {
+    res.send(req.query.a / req.query.b);
+  }
+  if (req.query.arth == "rem") {
+    res.send(req.query.a % req.query.b);
+  }
 });
 
 app.listen(4000, () => {
