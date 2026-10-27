@@ -15,19 +15,19 @@ app.get("/praveen", (req, res) => {
 
 app.get("/add", (req, res) => {
   console.log(req.query);
-  res.send(+req.query.a + +req.query.b);
-});
-app.get("/sub", (req, res) => {
-  console.log(req.query);
-  res.send(req.query.a - req.query.b);
-});
-app.get("/mul", (req, res) => {
-  console.log(req.query);
-  res.send(req.query.a * req.query.b);
-});
-app.get("/div", (req, res) => {
-  console.log(req.query);
-  res.send(req.query.a / req.query.b);
+  if (req.query.arth == "add") {
+    res.send(+req.query.a + +req.query.b);
+  }
+
+  if (req.query.arth == "sub") {
+    res.send(req.query.a - req.query.b);
+  }
+  if (req.query.arth == "mul") {
+    res.send(req.query.a * req.query.b);
+  }
+  if (req.query.arth == "div") {
+    res.send(req.query.a / req.query.b);
+  }
 });
 
 app.get("/myform", (req, res) => {
