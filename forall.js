@@ -81,6 +81,30 @@ app.get("/aboutus", (req, res) => {
   res.sendFile(__dirname + "/aboutus.html");
 });
 
+app.get("/students", (req, res) => {
+  var data = JSON.parse(fs.readFileSync("students.txt").toString());
+  res.json(data);
+});
+
+app.get("/employees", (req, res) => {
+  var data = JSON.parse(fs.readFileSync("employees.txt").toString());
+  var str = "";
+  str = "<table border='2'>";
+  data.forEach((emp) => {
+    str =
+      str +
+      `
+      <tr>
+        <td>${emp.name}</td>
+        <td>${emp.role}</td>
+        <td>${emp.department}</td>
+      </tr>
+    `;
+  });
+  str = str + "</table>";
+  res.send(str);
+});
+
 app.listen(4000, () => {
   console.log("something running on 4000");
 });
