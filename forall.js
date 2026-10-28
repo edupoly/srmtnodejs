@@ -88,21 +88,17 @@ app.get("/students", (req, res) => {
 
 app.get("/employees", (req, res) => {
   var data = JSON.parse(fs.readFileSync("employees.txt").toString());
-  var str = "";
-  str = "<table border='2'>";
-  data.forEach((emp) => {
-    str =
-      str +
-      `
-      <tr>
-        <td>${emp.name}</td>
-        <td>${emp.role}</td>
-        <td>${emp.department}</td>
-      </tr>
-    `;
+  res.send(data);
+});
+
+app.get("/employees/:id", (req, res) => {
+  var data = JSON.parse(fs.readFileSync("employees.txt").toString());
+  var emp = data.filter((em) => {
+    if (em.id === req.params.id) {
+      return true;
+    }
   });
-  str = str + "</table>";
-  res.send(str);
+  res.send(emp);
 });
 
 app.listen(4000, () => {
