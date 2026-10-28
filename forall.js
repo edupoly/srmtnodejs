@@ -2,7 +2,7 @@
 // import {express } from 'express'//reactjs
 var express = require("express"); //nodejs importing library
 var app = express();
-
+var fs = require("fs");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -52,15 +52,33 @@ app.post("/add", (req, res) => {
   if (req.body.arth == "sub") {
     res.send(req.body.a - req.body.b);
   }
-  if (req.query.arth == "mul") {
-    res.send(req.query.a * req.query.b);
+  if (req.body.arth == "mul") {
+    res.send(req.body.a * req.body.b);
   }
-  if (req.query.arth == "div") {
-    res.send(req.query.a / req.query.b);
+  if (req.body.arth == "div") {
+    res.send(req.body.a / req.body.b);
   }
-  if (req.query.arth == "rem") {
-    res.send(req.query.a % req.query.b);
+  if (req.body.arth == "rem") {
+    res.send(req.body.a % req.body.b);
   }
+});
+
+app.get("/addStudent", (req, res) => {
+  res.sendFile(__dirname + "/studentform.html");
+});
+
+app.post("/savestudent", (req, res) => {
+  console.log(req.body);
+  fs.writeFileSync("addnewstudents.txt", JSON.stringify(req.body));
+  res.send("please wait");
+});
+
+app.get("/home", (req, res) => {
+  res.sendFile(__dirname + "/home.html");
+});
+
+app.get("/aboutus", (req, res) => {
+  res.sendFile(__dirname + "/aboutus.html");
 });
 
 app.listen(4000, () => {

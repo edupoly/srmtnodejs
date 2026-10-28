@@ -15,10 +15,10 @@
         <input type="text" name="b">
         <br>
         <button name="arth" value="add" onclick="add(event)">Add</button>
-        <button name="arth" value="sub" onclick="sub(event)">Sub</button>
-        <button name="arth" value="mul">Mul</button>
-        <button name="arth" value="div">Div</button>
-        <button name="arth" value="rem">Reminder</button>
+        <button name="arth" value="sub" onclick="add(event)">Sub</button>
+        <button name="arth" value="mul" onclick="add(event)">Mul</button>
+        <button name="arth" value="div" onclick="add(event)">Div</button>
+        <button name="arth" value="rem" onclick="add(event)">Reminder</button>
     </form>
     <h1 id="dd"></h1>
     <script>
@@ -26,31 +26,11 @@
             ev.preventDefault()
             var a = document.getElementById("d1").value
             var b = document.arthForm.b.value;
+            console.log(ev.target.value);
             var boddata = JSON.stringify({
                 a: a,
                 b: b,
-                arth: "add"
-            })
-            fetch("http://localhost:4000/add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: boddata
-            }).then((res) => {
-                return res.json()
-            }).then((data) => {
-                document.getElementById("dd").innerHTML = data
-            })
-        }
-        function sub(ev) {
-            ev.preventDefault()
-            var a = document.getElementById("d1").value
-            var b = document.arthForm.b.value;
-            var boddata = JSON.stringify({
-                a: a,
-                b: b,
-                arth: "sub"
+                arth: ev.target.value
             })
             fetch("http://localhost:4000/add", {
                 method: "POST",
